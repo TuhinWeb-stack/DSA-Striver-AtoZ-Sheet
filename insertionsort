@@ -1,0 +1,30 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+void insertionSort(vector<int>&arr){
+    int n= arr.size();
+    for(int i =0; i<n-1; i++){
+        int temp = arr[i];
+        int j = i-1;
+        for(j=n;j>=0; j--){
+            if(arr[j]>temp){
+                arr[j+1]=arr[j];
+            }
+            else{
+                break;
+            }
+        }
+        arr[j+1]=temp;
+    }
+}
+
+int main(){
+    vector<int> arr= {8,6,5,4,3,2,1};
+
+    insertionSort(arr);
+
+    for(x : arr){
+        cout<<x<<endl;
+    }
+}

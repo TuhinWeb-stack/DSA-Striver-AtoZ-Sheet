@@ -1,0 +1,23 @@
+#include<iostream>
+#include<numeric>
+
+class Solution {
+    public:
+    int gcd(int n1, int n2){
+        while(n2!=0){
+            int temp = n2;
+            n2 = n1 % n2;
+            n1 = temp;
+        }
+        return abs(n1);
+        }
+    };
+
+    int main(){
+        Solution sol;
+        int n1 , n2;
+        std::cin>>n1>>n2;
+        int result= sol.gcd(n1, n2);
+        std::cout << result << std::endl;
+        return 0;
+    }

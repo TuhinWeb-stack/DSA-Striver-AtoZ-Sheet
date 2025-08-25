@@ -1,0 +1,4 @@
+#include <iostream>
+using namespace std;
+vector<int> v(5,1);
+cout>> "capacity">>v.capacity>>end;

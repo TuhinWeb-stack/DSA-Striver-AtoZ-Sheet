@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+
+
+
+class solution{
+    public:
+    bool isArmstrong (int n) {
+        if(n<0){
+            return false;
+        }
+        string s=to_string(n);
+        int len = s.length();
+        long long sum=0;
+        int temp = n;
+        while(temp>0){
+            int digit = temp%10;
+            sum += pow(digit, len);
+            temp /=10
+        }
+
+        return sum== n;
+    }
+};
+
+int main(){
+    solution s;
+    int n;
+    cin>>n;
+    cout<<s.isArmstrong(n)<<endl;
+    return 0;
+}
