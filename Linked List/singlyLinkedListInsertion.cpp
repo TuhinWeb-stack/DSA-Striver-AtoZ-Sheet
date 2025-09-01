@@ -10,6 +10,14 @@ class Node{
         this->data=data;
         this->next=NULL;
     }
+    ~Node(){
+        int value = this->data;
+        if(this->next!=NULL){
+            delete this;
+            this->next=NULL;
+        }
+        cout<<"The mememory is free for:  "<<value<<endl;
+    }
 };
 
 void insertAtHead(Node* &head, int d){
@@ -44,13 +52,40 @@ void insertAtPosition(Node*&tail, Node*&head, int position , int d){
     temp->next=inserNewNode;
 }
 
+void deleteNode(int position , Node* &head){
+    if(position== 1){
+        Node*temp =head;
+        head=head->next;
+        temp->next=NULL;
+        delete temp;
+    }
+    else{
+        Node* curr=head;
+        Node* prev=NULL;
+
+        int cnt=1;
+        while (cnt<position)
+        {
+            prev=curr;
+            curr=curr->next;
+            cnt++;
+        }    
+        prev->next=curr->next;
+        curr->next=NULL;
+        delete curr;
+
+    }
+}
 void print(Node*&head){
     Node*temp=head;
+    int length =0;
     while (temp!=NULL)
     {
         cout<<temp->data<<"  ";
         temp=temp->next;
+        length++;
     }
+    cout<<"The length of Linked List:  "<<length<<endl;
 }
 
 
@@ -68,6 +103,10 @@ int main(){
     cout<<"Head:  "<<head->data<<endl;
     cout<<"Tail:  "<<tail->data<<endl;
 
-
+    deleteNode(2, head);
+    print(head);
+    cout<<endl;
+    cout<<"Head:  "<<head->data<<endl;
+    cout<<"Tail:  "<<tail->data<<endl;
     return 0;
 }
