@@ -1,0 +1,82 @@
+#include<iostream>
+#include<stdexcept>
+
+using namespace std;
+const int MAX_SIZE=100;
+
+class ArrayQueue {
+    private:
+    int arr[MAX_SIZE];
+    int front;
+    int rear;
+
+    public:
+    ArrayQueue(){
+        front=-1;
+        rear=-1;
+    }
+
+    void push(int x){
+        if(rear>=MAX_SIZE){
+            cout<<"Error: Queue overflow"<<endl;
+            return;
+        }
+        if(isEmpty()){
+            front=0;
+            rear=0;
+        }
+        else{
+            rear ++;
+        }
+        arr[rear]=x;
+    }
+
+    int pop(){
+        if (isEmpty())
+        {
+            throw out_of_range("Error: Queue Underflow");
+        }
+        int data =arr[front];
+        if(front=rear){
+            front=-1;
+            rear=-1;
+        }
+        else{
+            front++;
+        }
+        return data;
+        
+    }
+
+    int peek(){
+        if (isEmpty())
+        {
+            throw out_of_range("Error: Queue Underflow");
+        }
+
+        return  arr[front];
+    }
+
+    bool isEmpty(){
+        return front==-1;
+    }
+};
+
+int main(){
+    ArrayQueue queue;
+    cout<<boolalpha;
+
+    cout << "Pushing 5..." << endl;
+    queue.push(5);
+
+    cout << "Pushing 10..." << endl;
+    queue.push(10);
+
+    cout << "Peeking at the front element: " << queue.peek() << endl;
+
+    cout << "Popping element: " << queue.pop() << endl;
+
+    cout << "Is the queue empty? " << queue.isEmpty() << endl;
+
+    return 0;
+}
