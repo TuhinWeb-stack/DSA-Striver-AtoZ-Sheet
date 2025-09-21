@@ -1,0 +1,61 @@
+#include<iostream>
+#include<stdexcept>
+
+using namespace std;
+const int MAX_SIZE= 100;
+
+class ArrayStack{
+    private:
+    int arr[MAX_SIZE];
+    int top_index;
+    
+    public:
+    ArrayStack(){
+        top_index= -1;
+    }
+
+    void push(int x){
+        if(top_index>=MAX_SIZE-1){
+            cout<<"Error: Stack Overflow"<<endl;
+            return ;
+        }
+        arr[++top_index]=x;
+    }
+
+    int pop(){
+        if(isEmpty()){
+            throw out_of_range("Error: Stack is Underflow");
+            
+        }
+        return arr[--top_index];
+    }
+
+    int top(){
+        if(isEmpty()){
+            throw out_of_range("Error: Stack is underflow");
+        }
+        return arr[top_index];
+    }
+    bool isEmpty(){
+        return arr[top_index]==-1;
+    }
+};
+
+int main(){
+    ArrayStack stack;
+    cout<<boolalpha;
+
+    cout << "Pushing 5..." << endl;
+    stack.push(5);
+
+    cout << "Pushing 10..." << endl;
+    stack.push(10);
+
+    cout << "Top element: " << stack.top() << endl;
+
+    cout << "Popping element: " << stack.pop() << endl;
+
+    cout << "Is the stack empty? " << stack.isEmpty() << endl;
+
+    return 0;
+}
