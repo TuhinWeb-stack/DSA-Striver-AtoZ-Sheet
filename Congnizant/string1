@@ -1,0 +1,65 @@
+import java.util.*;
+
+// --- This is the "LeetCode" part ---
+class Solution {
+    public String expandString(String S) {
+
+        StringBuilder result = new StringBuilder();
+        int[] firstOccurance = new int [26];
+
+        for(int i= 0 ; i<S.length();i++){
+            char c= S.charAt(i);
+            int index= c- 'a';
+
+            if(firstOccurance[index]==0){
+            firstOccurance[index]= i+1;
+            }
+
+            if(i>0){
+            result.append("-");
+            }
+
+            int count_occurance= firstOccurance[index];
+            for(int j=0;j<count_occurance;j++){
+            result.append(c);
+            }
+        
+        }
+        return result.toString();
+        
+    }
+}
+
+// --- This is the "Driver" part to run locally ---
+public class Main {
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+
+        // Test Case 1 (Your example)
+        String input1 = "abcaba";
+        String result1 = solution.expandString(input1);
+        System.out.println("Test 1 | Input: " + input1);
+        System.out.println("Output: " + result1);
+        System.out.println("-----------------------------");
+
+        // Test Case 2 (Simple distinct)
+        String input2 = "abcd";
+        String result2 = solution.expandString(input2);
+        System.out.println("Test 2 | Input: " + input2);
+        System.out.println("Output: " + result2);
+        System.out.println("-----------------------------");
+
+        // Test Case 3 (Repeats)
+        String input3 = "abba";
+        String result3 = solution.expandString(input3);
+        System.out.println("Test 3 | Input: " + input3);
+        System.out.println("Output: " + result3); 
+        System.out.println("-----------------------------");
+        
+        // Test Case 4 (Single char)
+        String input4 = "z";
+        String result4 = solution.expandString(input4);
+        System.out.println("Test 4 | Input: " + input4);
+        System.out.println("Output: " + result4);
+    }
+}
